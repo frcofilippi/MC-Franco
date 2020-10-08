@@ -1,0 +1,27 @@
+.ControlPanel {
+    width: 100%;
+    height: 450px;
+    display: flex;
+    flex-direction:column ;
+    justify-content: space-between;
+    margin: auto;
+    align-items: center;
+    background: #e98238;
+    padding: 20px;
+    overflow: scroll;
+}
+
+.CheckoutButton {
+    width: 150px;
+    height: 150px;
+    padding: 3px;
+    margin: 5px;
+    border: 1px solid black;
+    font-weight: bold;
+    cursor: pointer;
+    background: darkcyan;
+}
+
+.CheckoutButton:disabled {
+    background: grey;
+}
