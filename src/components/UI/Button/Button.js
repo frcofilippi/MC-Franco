@@ -10,10 +10,9 @@ const button = (props) => {
     props.type === 'success' ? buttonClass.push(classes.Success) : buttonClass.push(classes.Cancel);
 
 
-    return (
-        <button className={buttonClass.join(' ')} onClick={props.clicked}>
-            {props.children}
-        </button>
+    return (<button className={buttonClass.join(' ')} onClick={props.clicked}>
+        {props.children}
+    </button>
     );
 }
 
