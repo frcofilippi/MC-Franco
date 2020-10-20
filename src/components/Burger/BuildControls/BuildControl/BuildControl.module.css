@@ -3,6 +3,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-sizing: border-box;
+    height: 16.6%;
+    
 }
 
 .BuildControl button {
@@ -16,7 +19,6 @@
 }
 
 .Label {
-    padding: 10px;
     font-weight: bold;
     width: 80px;
 }

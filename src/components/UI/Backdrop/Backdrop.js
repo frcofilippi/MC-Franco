@@ -3,13 +3,11 @@ import classes from './Backdrop.module.css';
 
 const backdrop = (props) => {
 
+    let bp = null;
     if (props.show) {
-        return (
-            <div className={classes.Backdrop}></div>
-        );
-    } else {
-        return null;
+        bp = <div className={classes.Backdrop} onClick={props.clicked}></div>;
     }
+    return (bp);
 }
 
 export default backdrop;
