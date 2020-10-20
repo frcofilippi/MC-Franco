@@ -6,19 +6,19 @@ import Aux from '../../../hoc/Auxiliary';
 
 class Modal extends Component {
     
-    shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.show !== this.props.show) {
-            return true;
-        }
-        return false;
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     if (nextProps.show !== this.props.show) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     render() {
         let content = null;
         if (this.props.show) {
             content = (
                 <Aux>
-                    <Backdrop show={true} />
+                    <Backdrop show={this.props.show} clicked={this.props.closeModal}  />
                     <div className={classes.ModalContainer}>
                         {this.props.children}
                     </div>
