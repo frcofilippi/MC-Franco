@@ -23,13 +23,16 @@ class BurgerBuilder extends Component {
         totalPrice: 4,
         purchasable: false,
         purchasing: false,
-        loading: false
+        loading: false,
+        error: null
     }
 
     componentDidMount() {
         axios.get(`https://react-mc-franco.firebaseio.com/ingredients.json`)
             .then(resp => this.setState({ burgerIngredients: resp.data }))
-            .catch(err => { });
+            .catch(err => {
+                this.setState({error: err});
+             }); //need to create an error state for the app to handle this
     }
 
     updatePurchasableState(ingredients) {
@@ -109,7 +112,7 @@ class BurgerBuilder extends Component {
             orderSummary = <Spinner />;
         }
 
-        let burger = <Spinner />;
+        let burger = this.state.error ? 'There was an error' : <Spinner />;
         if (this.state.burgerIngredients) {
             burger = (<Aux>
                 <Burger burgerIngredients={this.state.burgerIngredients} />
