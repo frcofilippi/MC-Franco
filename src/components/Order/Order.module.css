@@ -1,0 +1,20 @@
+.Order {
+    width: 80%;
+    height: 150px;
+    padding: 10px;
+    margin: 10px auto;
+    box-sizing: border-box;
+    box-shadow: 2px 2px 5px 1px #8F8F8F;
+}
+
+.OrderLabel {
+    display: inline-block;
+    padding: 2px;
+    margin: 2px;
+    border: 1px solid gray;
+    background: lightskyblue;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    border-radius: 5px;
+    font-weight: bold;
+}

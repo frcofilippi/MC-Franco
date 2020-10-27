@@ -23,13 +23,16 @@ class BurgerBuilder extends Component {
         totalPrice: 4,
         purchasable: false,
         purchasing: false,
-        loading: false
+        loading: false,
+        error: null
     }
 
     componentDidMount() {
         axios.get(`https://react-mc-franco.firebaseio.com/ingredients.json`)
             .then(resp => this.setState({ burgerIngredients: resp.data }))
-            .catch(err => { });
+            .catch(err => {
+                this.setState({ error: err });
+            }); //need to create an error state for the app to handle this
     }
 
     updatePurchasableState(ingredients) {
@@ -68,28 +71,39 @@ class BurgerBuilder extends Component {
     }
 
     continuePurchaseHandler = () => {
-        this.setState({ loading: true })
+        // this.setState({ loading: true })
 
-        const order = {
-            ingredients: this.state.burgerIngredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'Franco Filippi',
-                address: {
-                    street: 'test strreet 222',
-                    zipCode: 32825,
-                    country: 'Argentina'
-                }
-            },
-            deliveryMethod: 'express'
-        };
-        axios.post('/orders.json', order)
-            .then(resp => {
-                this.setState({ loading: false, purchasing: false })
-            })
-            .catch(err => {
-                this.setState({ loading: false, purchasing: false })
-            });
+        // const order = {
+        //     ingredients: this.state.burgerIngredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: 'Franco Filippi',
+        //         address: {
+        //             street: 'test strreet 222',
+        //             zipCode: 32825,
+        //             country: 'Argentina'
+        //         }
+        //     },
+        //     deliveryMethod: 'express'
+        // };
+        // axios.post('/orders.json', order)
+        //     .then(resp => {
+        //         this.setState({ loading: false, purchasing: false })
+        //     })
+        //     .catch(err => {
+        //         this.setState({ loading: false, purchasing: false })
+        //     });
+        const ingredients = { ...this.state.burgerIngredients };
+        let searchString = [];
+        for (let ingr in ingredients) {
+
+            searchString.push(`${encodeURIComponent(ingr)}=${encodeURIComponent(ingredients[ingr])}`);
+        }
+        searchString.push(`price=${this.state.totalPrice}`);
+        const search = '?' + searchString.join('&');
+        const uri = this.props.location.pathname + 'checkout' + search;
+        console.log(uri);
+        this.props.history.push(uri);
     }
 
     render() {
@@ -109,7 +123,7 @@ class BurgerBuilder extends Component {
             orderSummary = <Spinner />;
         }
 
-        let burger = <Spinner />;
+        let burger = this.state.error ? 'There was an error' : <Spinner />;
         if (this.state.burgerIngredients) {
             burger = (<Aux>
                 <Burger burgerIngredients={this.state.burgerIngredients} />
