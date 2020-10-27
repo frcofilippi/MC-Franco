@@ -1,0 +1,14 @@
+.Content {
+    margin-top: 72px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media(min-width: 500px) {
+    .Content {
+        width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 90%;
+    }
+}

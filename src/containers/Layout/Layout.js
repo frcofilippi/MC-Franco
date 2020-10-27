@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import Aux from '../../hoc/Auxiliary'
 import classes from './Layout.module.css'
-import Toolbar from '../Navigation/Toolbar/Toolbar';
-import SideDrawer from '../Navigation/Sidedrawer/Sidedrawer';
+import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
+import SideDrawer from '../../components/Navigation/Sidedrawer/Sidedrawer';
 
-//convert to class
-//mantain the state for show/hide sidebar and toolbar
 
 class Layout extends Component {
 

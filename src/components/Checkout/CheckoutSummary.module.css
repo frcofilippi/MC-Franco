@@ -1,0 +1,15 @@
+.CheckoutSummary {
+    height: 30%;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 5px auto 10px auto ;
+}
+
+.CheckoutSummary h3 {
+    margin: auto ;
+    text-align: center;
+}
+
+.CheckoutSummary .Controls {
+    text-align: center;
+}
