@@ -1,0 +1,25 @@
+.InputElement {
+    display: block;
+    width: 100%;
+    margin: 10px;
+    box-sizing: border-box;
+    font: inherit;
+    outline: none;
+}
+
+.InputElement input,
+.InputElement select {
+  width: 90%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.Invalid {
+    border: 1px solid red;
+    background-color: rgb(252, 208, 204);
+}
