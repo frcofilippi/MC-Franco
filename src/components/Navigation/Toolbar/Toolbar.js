@@ -4,16 +4,18 @@ import Logo from '../../Logo/Logo';
 import NavigationItems from '../../NavigationItems/NavigationItems';
 import DrawerToggle from '../Sidedrawer/DrawerToggle/DrawerToggle';
 
-const toolbar = (props) => (
-    <header className={classes.Toolbar}>
-        <DrawerToggle clicked={props.drawerToggleClicked}/>
-        <div className={classes.Logo}>
-            <Logo />
-        </div>
-        <nav className={classes.DesktopOnly}>
-            <NavigationItems />
-        </nav>
-    </header>
-);
+const toolbar = (props) => {
+    return (
+        <header className={classes.Toolbar}>
+            <DrawerToggle clicked={props.drawerToggleClicked} />
+            <div className={classes.Logo}>
+                <Logo />
+            </div>
+            <nav className={classes.DesktopOnly}>
+                <NavigationItems authenticated={props.authenticated}/>
+            </nav>
+        </header>
+    );
+}
 
 export default toolbar;

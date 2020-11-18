@@ -2,41 +2,29 @@ import React, { Component } from 'react';
 import Order from '../../components/Order/Order';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import { connect } from 'react-redux';
 import axios from '../../axiosOrders';
+import * as actions from '../../store/actions/index';
+
+
 
 class Orders extends Component {
 
-    state = {
-        orders: [],
-        loading: false
-    }
+    // state = {
+    //     orders: [],
+    //     loading: false
+    // }
 
     componentDidMount() {
-        //fetch orders from server
-        axios.get('/orders.json')
-            .then(resp => {
-                const response = resp.data;
-                let fetchedOrders = [];
-                for (let order in response) {
-                    fetchedOrders.push({
-                        id: order,
-                        ...response[order]
-                    })
-                }
-                this.setState({ orders: fetchedOrders });
-            })
-            .catch(err => {
-                console.log(err)
-            });
-
+        this.props.loadOrders(this.props.user);
     }
 
     render() {
         let orders = <Spinner />;
 
-        if (!this.state.loading) {
+        if (!this.props.loading) {
             orders = (<div>
-                {this.state.orders.map(order => {
+                {this.props.orderArray.map(order => {
                     return (
                         <Order
                             key={order.id}
@@ -57,4 +45,19 @@ class Orders extends Component {
     }
 }
 
-export default withErrorHandler(Orders, axios);
+
+const mapStateToProops = state => {
+    return {
+        orderArray: state.orders.orders,
+        loading: state.orders.loading,
+        user: state.auth.user
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        loadOrders: (user) => dispatch(actions.loadOrders(user.idToken, user.uid))
+    }
+}
+
+export default connect(mapStateToProops, mapDispatchToProps)(withErrorHandler(Orders, axios));

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import InputElement from '../../components/UI/InputElement/InputElement';
-
+import { connect } from 'react-redux';
+import { beginPlacingOrder } from '../../store/actions/index';
 import classes from './ContactData.module.css';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axiosOrders';
-
 
 class ContactData extends Component {
     state = {
@@ -93,17 +94,15 @@ class ContactData extends Component {
                     ],
                     validationRules: null
                 },
-                touched: false,
+                touched: true,
                 valid: true
             }
         },
-        loading: false,
         orderFormValid: false
     }
 
     orderClickHandler = (event) => {
         event.preventDefault();
-        this.setState({ loading: true })
         const form = { ...this.state.orderForm };
         let customerData = {};
         Object.keys(form)
@@ -115,16 +114,10 @@ class ContactData extends Component {
             ingredients: this.props.burgerIngredients,
             price: this.props.totalPrice,
             date: new Date(),
-            contact: customerData
+            contact: customerData,
+            userId: this.props.user.uid
         };
-        axios.post('/orders.json', order)
-            .then(resp => {
-                this.setState({ loading: false });
-                this.props.history.push('/');
-            })
-            .catch(err => {
-                this.setState({ loading: false });
-            });
+        this.props.onOrderPlaced(this.props.user.idToken,order, this.props.history);
     }
 
     inputChangeHandler = (event, inputElement) => {
@@ -135,15 +128,13 @@ class ContactData extends Component {
         updatedOrderForm[inputElement].touched = true;
         updatedOrderForm[inputElement].valid = this.validateInput(inputElement, value);
         const formValid = this.checkFormValidity();
-        this.setState({ orderForm: updatedOrderForm, orderFormValid: formValid});
+        this.setState({ orderForm: updatedOrderForm, orderFormValid: formValid });
     }
 
-    checkFormValidity(){
+    checkFormValidity() {
         let valid = true;
-        for(let key in this.state.orderForm)
-        {
-            if(this.state.orderForm[key].valid === false || this.state.orderForm[key].touched === false)
-            {
+        for (let key in this.state.orderForm) {
+            if (this.state.orderForm[key].valid === false || this.state.orderForm[key].touched === false) {
                 valid = false;
             }
         }
@@ -153,24 +144,20 @@ class ContactData extends Component {
     validateInput(inputElment, value) {
         const rules = this.state.orderForm[inputElment].elementConfig.validationRules;
         let valid = true;
-        console.log(rules, value);
-        if ( rules && rules.required) {
-            if (value === '' && this.state.orderForm[inputElment].touched === true)
-            {   
+        if (rules && rules.required) {
+            if (value === '' && this.state.orderForm[inputElment].touched === true) {
                 valid = false;
             }
         }
 
-        if(rules && rules.minLength) {
-            if(value.length < rules.minLength)
-            {
+        if (rules && rules.minLength) {
+            if (value.length < rules.minLength) {
                 valid = false;
             }
         }
 
-        if(rules && rules.maxLength) {
-            if(value.length > rules.maxLength)
-            {
+        if (rules && rules.maxLength) {
+            if (value.length > rules.maxLength) {
                 valid = false;
             }
         }
@@ -207,10 +194,25 @@ class ContactData extends Component {
             </div>);
         return (
             <React.Fragment>
-                {this.state.loading ? <Spinner /> : contactForm}
+                {this.props.loading ? <Spinner /> : contactForm}
             </React.Fragment>
         );
     }
 }
 
-export default ContactData;
+const mapStateToProps = state => {
+    return {
+        totalPrice: state.burger.totalPrice,
+        burgerIngredients: state.burger.burgerIngredients,
+        loading: state.orders.loading,
+        user: state.auth.user
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onOrderPlaced: (idToken, orderInfo, history) => dispatch(beginPlacingOrder(idToken, orderInfo, history))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios));

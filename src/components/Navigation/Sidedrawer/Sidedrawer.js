@@ -11,13 +11,14 @@ const sidedrawer = props => {
     let classToApply = [];
     classToApply.push(classes.Sidedrawer);
 
-    if(props.show) {
+    if (props.show) {
         classToApply.push(classes.Open)
     } else {
         classToApply.push(classes.Close)
     }
 
     let content = null;
+
     if (props.show) {
         content = (<Aux>
             <Backdrop show={props.show} clicked={props.closeClicked} />
@@ -26,7 +27,7 @@ const sidedrawer = props => {
                     <Logo />
                 </div>
                 <nav>
-                    <NavigationItems clicked={props.closeClicked}/>
+                    <NavigationItems clicked={props.closeClicked} authenticated={props.authenticated} />
                 </nav>
             </div>
         </Aux>);
