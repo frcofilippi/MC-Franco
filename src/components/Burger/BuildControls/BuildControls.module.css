@@ -1,6 +1,6 @@
 .ControlPanel {
     width: 100%;
-    height: 450px;
+    height: 400px;
     display: flex;
     flex-direction:column ;
     justify-content: space-between;
@@ -9,6 +9,7 @@
     background: #e98238;
     padding: 20px;
     overflow: scroll;
+    box-sizing: border-box;
 }
 
 .CheckoutButton {
@@ -24,4 +25,11 @@
 
 .CheckoutButton:disabled {
     background: grey;
+}
+
+@media(min-width: 500px){
+    .ControlPanel {
+        width: 100%;
+        overflow: hidden;
+    }
 }
