@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/MC-Franco/static/css/main.212b0db5.chunk.css",
+    "main.css": "/MC-Franco/static/css/main.b3119a7a.chunk.css",
     "main.js": "/MC-Franco/static/js/main.0b313715.chunk.js",
     "main.js.map": "/MC-Franco/static/js/main.0b313715.chunk.js.map",
     "runtime-main.js": "/MC-Franco/static/js/runtime-main.ba04495d.js",
@@ -11,17 +11,17 @@
     "static/js/3.5584ad0f.chunk.js": "/MC-Franco/static/js/3.5584ad0f.chunk.js",
     "static/js/3.5584ad0f.chunk.js.map": "/MC-Franco/static/js/3.5584ad0f.chunk.js.map",
     "index.html": "/MC-Franco/index.html",
-    "precache-manifest.bbd4cd20921cec57078dc025600bcf77.js": "/MC-Franco/precache-manifest.bbd4cd20921cec57078dc025600bcf77.js",
+    "precache-manifest.a088e0352484c82a36c3fcdd1e14c9dd.js": "/MC-Franco/precache-manifest.a088e0352484c82a36c3fcdd1e14c9dd.js",
     "service-worker.js": "/MC-Franco/service-worker.js",
     "static/css/3.157a16db.chunk.css.map": "/MC-Franco/static/css/3.157a16db.chunk.css.map",
-    "static/css/main.212b0db5.chunk.css.map": "/MC-Franco/static/css/main.212b0db5.chunk.css.map",
+    "static/css/main.b3119a7a.chunk.css.map": "/MC-Franco/static/css/main.b3119a7a.chunk.css.map",
     "static/js/2.8f68ffc8.chunk.js.LICENSE.txt": "/MC-Franco/static/js/2.8f68ffc8.chunk.js.LICENSE.txt",
     "static/media/burger-logo.png": "/MC-Franco/static/media/burger-logo.b8503d26.png"
   },
   "entrypoints": [
     "static/js/runtime-main.ba04495d.js",
     "static/js/2.8f68ffc8.chunk.js",
-    "static/css/main.212b0db5.chunk.css",
+    "static/css/main.b3119a7a.chunk.css",
     "static/js/main.0b313715.chunk.js"
   ]
 }
