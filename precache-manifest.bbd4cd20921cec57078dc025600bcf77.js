@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "522b341de4a62b3a9d0f796f8d6efb5c",
+    "revision": "33d3412e5e971d34a50b0a3f5a99ae79",
     "url": "/MC-Franco/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/MC-Franco/static/css/3.157a16db.chunk.css"
   },
   {
-    "revision": "1457ecc61e14188bd1e8",
+    "revision": "61f19b9e4b4bf01351d7",
     "url": "/MC-Franco/static/css/main.212b0db5.chunk.css"
   },
   {
@@ -24,8 +24,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/MC-Franco/static/js/3.5584ad0f.chunk.js"
   },
   {
-    "revision": "1457ecc61e14188bd1e8",
-    "url": "/MC-Franco/static/js/main.072d95ea.chunk.js"
+    "revision": "61f19b9e4b4bf01351d7",
+    "url": "/MC-Franco/static/js/main.0b313715.chunk.js"
   },
   {
     "revision": "b2469dc399e47738a6be",
